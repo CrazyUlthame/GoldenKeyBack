@@ -6,6 +6,7 @@ import com.ernesto.springboot.goldenkey.springboot_web.Service.CategoriaService;
 import com.ernesto.springboot.goldenkey.springboot_web.Service.ProductosService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,14 +56,14 @@ public class ProductosController {
     }
 
     @DeleteMapping("/categorias/{id}")
-    public Categorias DeleteCategorias(@PathVariable Integer id) throws Exception {
+    public ResponseEntity<String> DeleteCategorias(@PathVariable Integer id) throws Exception {
         Categorias response = null;
         try{
             response = this.categoriasService.CategoiriaEliminar(id);
         }catch  (Exception ex){
             throw new Exception(ex.getMessage());
         }
-        return response;
+        return ResponseEntity.ok("Eliminado correctamente.");
     }
     
 
@@ -101,14 +102,14 @@ public class ProductosController {
     }
     
     @DeleteMapping("/{Id}")
-    public Productos DeleteProducto(@PathVariable Integer Id) throws Exception{
+    public ResponseEntity<String> DeleteProducto(@PathVariable Integer Id) throws Exception{
         Productos response = null;
         try{
             response = this.productosService.ProductoBorrar(Id);
         }catch(Exception ex){
             throw new Exception(ex.getMessage());
         }
-        return response;
+        return ResponseEntity.ok("Eliminado Correctamente.");
     }
     
 

@@ -4,6 +4,7 @@ package com.ernesto.springboot.goldenkey.springboot_web.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,14 +66,14 @@ public class UserController {
     }
 
     @DeleteMapping("{id}")
-    public Usuarios deleteMethodName(@PathVariable Integer id) throws Exception {
+    public ResponseEntity<String> deleteMethodName(@PathVariable Integer id) throws Exception {
         Usuarios usuario = new Usuarios();
         try{
             usuario = this.usuarioService.UsuarioBorrar(id);
         }catch(Exception ex){
             throw new Exception(ex.getMessage());
         }
-        return usuario;
+        return ResponseEntity.ok("Eliminado Correctamente.");
     }
     
     
@@ -113,13 +114,13 @@ public class UserController {
     }
 
     @DeleteMapping("tiposusuarios/{id}")
-    public TiposUsuarios delTiposUsuarios(@PathVariable Integer id) throws Exception {
+    public ResponseEntity<String> delTiposUsuarios(@PathVariable Integer id) throws Exception {
         TiposUsuarios tiposUsuarios = new TiposUsuarios();
         try{
             tiposUsuarios = this.tipoUsuarioService.BorrarTiposUsuarios(id);
         }catch(Exception ex){
             throw new Exception(ex.getMessage());
         }
-        return tiposUsuarios;
+        return ResponseEntity.ok("Eliminado Correctamente.");
     }    
 }
